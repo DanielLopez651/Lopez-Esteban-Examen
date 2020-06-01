@@ -9,13 +9,24 @@ package ups.edu.ec.modelo;
  *
  * @author user
  */
-public class Electrodomestico {
+public abstract class Electrodomestico {
     private int codigo;
     private String descripcion;
     private double precioBase;
     private String color;
     private char consumoEnergentico;
     private int peso;
+
+    public Electrodomestico(int codigo, String descripcion, double precioBase, String color, char consumoEnergentico, int peso) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.precioBase = precioBase;
+        this.color = color;
+        this.consumoEnergentico = consumoEnergentico;
+        this.peso = peso;
+    }
+
+ 
 
     public Electrodomestico(int codigo) {
         this.codigo = codigo;
@@ -71,6 +82,33 @@ public class Electrodomestico {
     public void setPeso(int peso) {
         this.peso = peso;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Electrodomestico other = (Electrodomestico) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
+    }
+    
+    public abstract double obtenerSalario();
 
     @Override
     public String toString() {
